@@ -9,15 +9,13 @@ class DbConnect
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_EMULATE_PREPARES => false,
   );
-
   public function connect()
   {
     try {
-      $conn = new PDO('mysql:host=' . $this->server .
-        ';dbname=' . $this->dbname . ';charset=utf8', $this->user, $this->pass, $this->options);
+      $conn = new PDO('mysql:host=' . $this->server . ';dbname=' . $this->dbname . ';charset=utf8', $this->user, $this->pass, $this->options);
       return $conn;
     } catch (PDOException $e) {
+      echo "Database Error: " . $e->getMessage();
     }
-    echo "Database Error: " . $e->getMessage();
   }
 }
