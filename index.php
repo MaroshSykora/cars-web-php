@@ -10,6 +10,7 @@ $dbConnection = $conn->connect();
 $instanceCars = new Cars($dbConnection);
 // zavolani metody pomoci instance
 $cars = $instanceCars->getCars();
+// $selCars = $cars;
 
 // pokud jsme odeslali form pomoci metody get a jsou zadany tyto hodnoty v asoc. poli _GET, spusti se cast podminky za if index.php?brandneco&model=neco&reg=neco
 if (isset($_GET['brand']) || isset($_GET['model']) || isset($_GET['reg'])) {
@@ -46,76 +47,73 @@ if (isset($_GET['delete'])) {
 </head>
 
 <body>
-  <section>
-    <h2>Vyhledavani</h2>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Auta</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.php">Vyhledavani</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="edit.php">Uprav auto</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="add.php">Pridej auto</a>
-            </li>
-          </ul>
-        </div>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Auta</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.php">Seznam aut</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="edit.php">Uprav auto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="add.php">Přidej auto</a>
+          </li>
+        </ul>
       </div>
-    </nav>
-  </section>
-  <section>
-    <div class="container">
-      <h2 class="h2">Vyhledavani</h2>
-      <form action="index.php" method="get">
-        <input type="text" name="brand" class="form-control my-2" placeholder="Zadejte znacku vyrobce">
-        <input type="text" name="model" class="form-control my-2" placeholder="Zadejte model vyrobce">
-        <input type="text" name="reg" class="form-control my-2" placeholder="Zadejte registracni znacku vozidla">
-        <input type="submit" value="Odesli" class="btn btn-primary my-2">
-      </form>
+    </div>
+  </nav>
+  <div class="container">
+    <h2 class="h2">Vyhledávání</h2>
+    <form action="index.php" method="get">
+      <input class="form-control my-2" name="brand" type="text" placeholder="Zadejte značku" />
+      <input class="form-control my-2" name="model" type="text" placeholder="Zadejte model" />
+      <input class="form-control my-2" name="reg" type="text" placeholder="Zadejte registraci" />
+      <input class="btn btn-primary my-2" type="submit" placeholder="Odešli" />
+    </form>
+    <?php
+    if (sizeof($selCars) > 0) {
+
+    ?>
       <table class="table">
         <tr>
           <th>ID</th>
-          <th>Znacka</th>
+          <th>Značka</th>
           <th>Model</th>
           <th>Registrace</th>
           <th>Kilometry</th>
-          <th>Rok vyroby</th>
+          <th>Rok</th>
+          <th>Akce</th>
         </tr>
-        <?php
-        // pokud jsme odeslali form pomoci metody get a jsou zadany tyto hodnoty v asoc. poli _GET, spusti se cast podminky za if
-        // zobrazeni dat ze selCars
-        foreach ($selCars as $car):
-        ?>
+        <?php foreach ($selCars as $car): ?>
           <tr>
-            <td><?php echo $car['id'] ?></td>
-            <td><?php echo $car['brand'] ?></td>
-            <td><?php echo $car['model'] ?></td>
-            <td><?php echo $car['reg'] ?></td>
-            <td><?php echo $car['km'] ?></td>
-            <td><?php echo $car['year'] ?></td>
+            <td><?php echo $car['id']; ?></td>
+            <td><?php echo $car['brand']; ?></td>
+            <td><?php echo $car['model']; ?></td>
+            <td><?php echo $car['reg']; ?></td>
+            <td><?php echo $car['km']; ?></td>
+            <td><?php echo $car['year']; ?></td>
             <td>
-              <!--  -->
-              <a class="btn btn-warning" href="edit.php?id=<?php echo $car['id'] ?>">Editovat</a>
-            </td>
-            <td>
-              <!-- vymazani auta odkazen na skript ve kterem jsem a do pole get dam ze hodnota delete je id auta - informace co ma skript udelat (v browseru jde videt v Prozkoumat prvek)-->
-              <a class="btn btn-warning" href="edit.php?delete=<?php echo $car['id'] ?>">Vymazat</a>
+              <a class="btn btn-warning" href="edit.php?id=<?php echo $car['id']; ?>">Editovat</a>
+              <a class="btn btn-warning" href="index.php?delete=<?php echo $car['id']; ?>" onclick="return confirm('Opravdu chcete smazat toto auto?');">Smazat</a>
             </td>
           </tr>
-        <?php
-        endforeach;
-        ?>
+        <?php endforeach; ?>
       </table>
-    </div>
-  </section>
 
+    <?php
+    } else { ?>
+      <p>Žádná auta k zobrazení</p>
+    <?php
+    }
+    ?>
+
+  </div>
 
   <!-- SKRIPT BOOTSTRAP -->
   <script src="./bootstrap.bundle.min.js"></script>
