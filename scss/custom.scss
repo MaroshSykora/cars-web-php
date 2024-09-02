@@ -1,5 +1,7 @@
+// $btn-primary {
+//   color: green;
+// }
 //<- tady (nad @importem) je mozne vkladat css atributy pro prepsani hodnot puvodnich atributu
-
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 //⚠️bootstrap.scss -> musí byt uvedena přípona (bez přípony to někdy soubor nenajde a hlásí chybu)
 //<- tady (pod @importem) se vypisuji nove vlastne vymyslene css atributy

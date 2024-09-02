@@ -11,7 +11,7 @@ $instanceCars = new Cars($dbConnection);
 // zavolani metody pomoci instance
 $cars = $instanceCars->getCars();
 
-
+// pokud jsme odeslali form pomoci metody get a jsou zadany tyto hodnoty v asoc. poli _GET, spusti se cast podminky za if index.php?brandneco&model=neco&reg=neco
 if (isset($_GET['brand']) || isset($_GET['model']) || isset($_GET['reg'])) {
   $selBrand = $_GET['brand'];
   $selModel = $_GET['model'];
@@ -21,6 +21,16 @@ if (isset($_GET['brand']) || isset($_GET['model']) || isset($_GET['reg'])) {
   // pokud nejsou vybrany vsechny polozky ve vyberu tak to i tak ukaze vysledek
   // pokud jsme nic neodeslali, pak tabulka vypise vsechny auta
   $selCars = $cars;
+}
+
+
+// mazani auta
+// index.php?delete=10
+if (isset($_GET['delete'])) {
+  $carId = $_GET['delete'];
+  $instanceCars->deleteCar($carId);
+  header("Location: index.php");
+  exit();
 }
 ?>
 
@@ -37,6 +47,7 @@ if (isset($_GET['brand']) || isset($_GET['model']) || isset($_GET['reg'])) {
 
 <body>
   <section>
+    <h2>Vyhledavani</h2>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Auta</a>
@@ -49,10 +60,10 @@ if (isset($_GET['brand']) || isset($_GET['model']) || isset($_GET['reg'])) {
               <a class="nav-link active" aria-current="page" href="index.php">Vyhledavani</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Uprav auto</a>
+              <a class="nav-link" href="edit.php">Uprav auto</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Uprav auto</a>
+              <a class="nav-link" href="add.php">Pridej auto</a>
             </li>
           </ul>
         </div>
@@ -89,6 +100,14 @@ if (isset($_GET['brand']) || isset($_GET['model']) || isset($_GET['reg'])) {
             <td><?php echo $car['reg'] ?></td>
             <td><?php echo $car['km'] ?></td>
             <td><?php echo $car['year'] ?></td>
+            <td>
+              <!--  -->
+              <a class="btn btn-warning" href="edit.php?id=<?php echo $car['id'] ?>">Editovat</a>
+            </td>
+            <td>
+              <!-- vymazani auta odkazen na skript ve kterem jsem a do pole get dam ze hodnota delete je id auta - informace co ma skript udelat (v browseru jde videt v Prozkoumat prvek)-->
+              <a class="btn btn-warning" href="edit.php?delete=<?php echo $car['id'] ?>">Vymazat</a>
+            </td>
           </tr>
         <?php
         endforeach;
