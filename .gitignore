@@ -1,3 +1,7 @@
 node_modules/
+scss/custom.css
+scss/custom.css.map
+index2.html
+cars.sql
 package-lock.json
 package.json
