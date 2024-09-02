@@ -47,34 +47,34 @@ if (isset($_GET['delete'])) {
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg yellow-bg">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Auta</a>
+      <a class="navbar-brand black-text" href="#">Auta</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php">Seznam aut</a>
+            <a class="nav-link dark-grey-color" aria-current="page" href="index.php">Seznam aut</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="edit.php">Uprav auto</a>
+            <a class="nav-link dark-grey-color" href="edit.php">Uprav auto</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="add.php">Přidej auto</a>
+            <a class="nav-link dark-grey-color" href="add.php">Přidej auto</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <div class="container">
-    <h2 class="h2">Vyhledávání</h2>
+  <div class="container my-3">
+    <h2 class="h2 dark-grey-color">Vyhledávání</h2>
     <form action="index.php" method="get">
       <input class="form-control my-2" name="brand" type="text" placeholder="Zadejte značku" />
       <input class="form-control my-2" name="model" type="text" placeholder="Zadejte model" />
       <input class="form-control my-2" name="reg" type="text" placeholder="Zadejte registraci" />
-      <input class="btn btn-primary my-2" type="submit" placeholder="Odešli" />
+      <input class="btn btn-main my-2" type="submit" value="Odešli" />
     </form>
     <?php
     if (sizeof($selCars) > 0) {
@@ -99,8 +99,8 @@ if (isset($_GET['delete'])) {
             <td><?php echo $car['km']; ?></td>
             <td><?php echo $car['year']; ?></td>
             <td>
-              <a class="btn btn-warning" href="edit.php?id=<?php echo $car['id']; ?>">Editovat</a>
-              <a class="btn btn-warning" href="index.php?delete=<?php echo $car['id']; ?>" onclick="return confirm('Opravdu chcete smazat toto auto?');">Smazat</a>
+              <a class="btn btn-edit" href="edit.php?id=<?php echo $car['id']; ?>">Editovat</a>
+              <a class="btn btn-delete" href="index.php?delete=<?php echo $car['id']; ?>" onclick="return confirm('Opravdu chcete smazat toto auto?');">Smazat</a>
             </td>
           </tr>
         <?php endforeach; ?>

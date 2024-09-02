@@ -11964,4 +11964,31 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+.btn-main {
+  background-color: #e2c962;
+}
+
+.btn-main:hover,
+.btn-edit:hover,
+.btn-delete:hover {
+  transform: rotate(-3deg);
+}
+
+.btn-edit {
+  background-color: #837c6c;
+  color: white;
+}
+
+.btn-delete {
+  background-color: #b4744e;
+  color: white;
+}
+
+.dark-grey-color {
+  color: #59554c;
+}
+
+.yellow-bg {
+  background-color: #e2c962;
 }/*# sourceMappingURL=custom.css.map */

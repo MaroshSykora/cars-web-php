@@ -34,7 +34,7 @@ if (isset($_POST['add'])) {
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg yellow-bg">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Auta</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,7 +56,7 @@ if (isset($_POST['add'])) {
     </div>
   </nav>
   <div class="container">
-    <h2 class="h2">Přidání nového auta</h2>
+    <h2 class="h2 dark-grey-color my-3">Přidání nového auta</h2>
     <form action="add.php" method="post">
       <input type="hidden" name="id" value="">
       <input class="form-control my-2" name="brand" type="text" value="" placeholder="Zadejte značku" required />
@@ -64,7 +64,7 @@ if (isset($_POST['add'])) {
       <input class="form-control my-2" name="reg" type="text" value="" placeholder="Zadejte registraci" required />
       <input class="form-control my-2" name="km" type="number" value="" placeholder="Zadejte kilometry" required />
       <input class="form-control my-2" name="year" type="number" value="" placeholder="Zadejte rok" required />
-      <input class="btn btn-primary my-2" type="submit" name="add" value="Vlož auto" />
+      <input class="btn btn-main my-2" type="submit" name="add" value="Vlož auto" />
     </form>
   </div>
 

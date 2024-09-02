@@ -1,9 +1,33 @@
-// $btn-primary {
-//   color: green;
-// }
 //<- tady (nad @importem) je mozne vkladat css atributy pro prepsani hodnot puvodnich atributu
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 //⚠️bootstrap.scss -> musí byt uvedena přípona (bez přípony to někdy soubor nenajde a hlásí chybu)
 //<- tady (pod @importem) se vypisuji nove vlastne vymyslene css atributy
 
 // Then add additional custom code here
+
+.btn-main {
+  background-color: #e2c962;
+}
+.btn-main:hover,
+.btn-edit:hover,
+.btn-delete:hover {
+  transform: rotate(-3deg);
+}
+
+.btn-edit {
+  background-color: #837c6c;
+  color: white;
+}
+
+.btn-delete {
+  background-color: #b4744e;
+  color: white;
+}
+
+.dark-grey-color {
+  color: #59554c;
+}
+
+.yellow-bg {
+  background-color: #e2c962;
+}
